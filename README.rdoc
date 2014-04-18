@@ -1,3 +1,19 @@
 = Redmine Mention Plugin
 
 Add user to the watchers list of an issue after mentioning him/her in the note. The syntax is "@username".
+
+== Install
+
+* Copy redmine_mention_plugin to {RAILS_APP}/plugins on your redmine path
+* Run rake redmine:plugins NAME=redmine_mention_plugin RAILS_ENV=production
+
+== Uninstall
+
+* rake redmine:plugins NAME=redmine_mention_plugin RAILS_ENV=production
+* rm -r plugins/redmine_mention_plugin
+
+== Requirements
+
+* Redmine 2.2.4.stable and above
+
+This software is licensed under the terms of the GNU General Public License (GPL) v2. See COPYRIGHT and COPYING for details.
