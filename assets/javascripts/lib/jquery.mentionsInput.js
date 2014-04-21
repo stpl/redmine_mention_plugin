@@ -353,7 +353,7 @@
     }
 
     function resetInput() {
-      elmInputBox.val('');
+      // elmInputBox.val('');
       mentionsCollection = [];
       updateValues();
     }

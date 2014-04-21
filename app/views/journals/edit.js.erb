@@ -1,0 +1,12 @@
+var script = document.createElement('script');
+script.src = '/plugin_assets/redmine_mention_plugin/javascripts/redmine-mention.js';
+script.type = 'text/javascript';
+document.getElementsByTagName('body')[0].appendChild(script);
+$("#journal-<%= @journal.id %>-notes").hide();
+
+if ($("form#journal-<%= @journal.id %>-form").length > 0) {
+  // journal edit form already loaded
+  $("#journal-<%= @journal.id %>-form").show();
+} else {
+  $("#journal-<%= @journal.id %>-notes").after('<%= escape_javascript(render :partial => 'notes_form') %>');
+}

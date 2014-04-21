@@ -114,7 +114,7 @@
 							if(goalheight >= maxheight) {
 								setHeightAndOverflow(maxheight,'auto');
 							} else if(goalheight <= minheight) {
-								setHeightAndOverflow(minheight,'hidden');
+//								setHeightAndOverflow(minheight,'hidden');
 							} else {
 								setHeightAndOverflow(goalheight,'hidden');
 							}
@@ -126,7 +126,7 @@
 				}
 				
 				// Hide scrollbars
-				$textarea.css({'overflow':'hidden'});
+//				$textarea.css({'overflow':'hidden'});
 				
 				// Update textarea size on keyup, change, cut and paste
 				$textarea.bind('keyup change cut paste', function(){
@@ -144,7 +144,7 @@
 						if($twin.height() > minheight) {
 							$textarea.height($twin.height());
 						} else {
-							$textarea.height(minheight);
+//							$textarea.height(minheight);
 						}
 					}
 				});
