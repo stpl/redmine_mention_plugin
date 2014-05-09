@@ -6,7 +6,7 @@ module Mention
       base.class_eval do
         unloadable
 
-        scope :with_username,->(username) { where('LCASE(login) like ?', "#{username.downcase}%")}
+        scope :with_name,->(name) { where('LCASE(CONCAT(firstname," ",lastname)) like ?', "#{name.downcase}%")}
       end
     end
   end
