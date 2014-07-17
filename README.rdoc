@@ -12,6 +12,10 @@ Add user to the watchers list of an issue after mentioning him/her in the note. 
 * rake redmine:plugins NAME=redmine_mention_plugin RAILS_ENV=production
 * rm -r plugins/redmine_mention_plugin
 
+== How it works
+
+* On texteditor, "@" following with any initial letter enables auto suggest to select member from suggestion list. tagged member will receive an email notification for same.
+
 == Requirements
 
 * Redmine 2.2.4.stable and above
