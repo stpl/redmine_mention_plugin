@@ -160,7 +160,7 @@
 
       var start = currentMessage.substr(0, startCaretPosition);
       var end = currentMessage.substr(currentCaretPosition, currentMessage.length);
-      var startEndIndex = (start + mention.value).length + 1;
+      var startEndIndex = (start + mention.value).length + 4;
 
       mentionsCollection.push(mention);
 
