@@ -25,6 +25,7 @@ module Mention
 
   def self.apply_patch
 	  Journal.send(:include, Mention::JournalPatch)
+	  Issue.send(:include, Mention::IssuePatch)
 	  User.send(:include, Mention::UserPatch)
 	  JournalsHelper.send(:include, Mention::JournalHelperPatch)
 	  IssuesHelper.send(:include, Mention::IssueHelperPatch)
