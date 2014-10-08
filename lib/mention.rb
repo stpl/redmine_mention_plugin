@@ -23,10 +23,18 @@ module Mention
     content
 	end
 
+  def self.mentioned_users(content)
+    content.scan(/\[\~\w+\]/).map do |mentioned_user|
+      User.find_by_login(mentioned_user[2..-2])
+    end
+  end
+
   def self.apply_patch
 	  Journal.send(:include, Mention::JournalPatch)
+	  Issue.send(:include, Mention::IssuePatch)
 	  User.send(:include, Mention::UserPatch)
 	  JournalsHelper.send(:include, Mention::JournalHelperPatch)
+	  IssuesHelper.send(:include, Mention::IssueHelperPatch)
 	  WikiHelper.send(:include, Mention::WikiHelperPatch)
 	  WikiContent.send(:include, Mention::WikiContentPatch)
   end
