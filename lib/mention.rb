@@ -1,33 +1,46 @@
+require_dependency 'application_helper'
 require_dependency 'issue'
 require_dependency 'watcher'
-require_dependency 'user'
 require_dependency 'wiki_page'
+require_dependency 'user'
 require 'mention/journal_patch'
 require 'mention/user_patch'
 require 'mention/journal_helper_patch'
 require 'mention/wiki_helper_patch'
 require 'mention/wiki_content_patch'
+require 'mention/issue_patch'
+require 'mention/application_helper_patch'
 
 module Mention
-	def self.update_tag(content, watchable=nil)
-    mentioned_users = content.scan(/\[\~\w+\]/)
+  TAG_SCAN_REGEX = /\[\~\w+\]/
+
+  def self.update_tag(content, watchable=nil)
+    mentioned_users = content.scan(TAG_SCAN_REGEX)
     mentioned_users.each do |mentioned_user|
       if user = User.find_by_login(mentioned_user[2..-2])
-      	if watchable.is_a?(Issue) or watchable.is_a?(WikiPage)
-      		Watcher.create(:watchable => watchable, :user => user)
-      	else
-      		content = content.gsub(mentioned_user, "<a class='user active' href='/users/#{user.id}'>#{user.name}</a>")
-      	end
+        if watchable.is_a?(Issue) or watchable.is_a?(WikiPage)
+          Watcher.create(:watchable => watchable, :user => user)
+        else
+          content = content.gsub(mentioned_user, "<a class='user active' href='/users/#{user.id}'>#{user.name}</a>")
+        end
       end
     end
     content
-	end
+  end
+
+  def self.mentioned_users(content)
+    content.scan(TAG_SCAN_REGEX).map do |mentioned_user|
+      User.find_by_login(mentioned_user[2..-2])
+    end
+  end
 
   def self.apply_patch
-	  Journal.send(:include, Mention::JournalPatch)
-	  User.send(:include, Mention::UserPatch)
-	  JournalsHelper.send(:include, Mention::JournalHelperPatch)
-	  WikiHelper.send(:include, Mention::WikiHelperPatch)
-	  WikiContent.send(:include, Mention::WikiContentPatch)
+    Journal.send(:include, Mention::JournalPatch)
+    User.send(:include, Mention::UserPatch)
+    Issue.send(:include, Mention::IssuePatch)
+    JournalsHelper.send(:include, Mention::JournalHelperPatch)
+    WikiHelper.send(:include, Mention::WikiHelperPatch)
+    ApplicationHelper.send(:include, Mention::ApplicationHelperPatch)
+    WikiContent.send(:include, Mention::WikiContentPatch)
   end
 end
