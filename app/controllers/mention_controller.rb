@@ -1,9 +1,9 @@
 class MentionController < ApplicationController
-	def search
+  def search
     result = User.with_name(params[:search_tag]).each.inject([]) do |data, user|
-    						data << {id: user.id, username: user.login, full_name: user.name, email: user.mail} unless user.locked?
-    						data
-						 end
+                data << {id: user.id, username: user.login, full_name: user.name, email: user.mail} unless user.locked?
+                data
+             end
     render json: {users: result}
-	end
+  end
 end

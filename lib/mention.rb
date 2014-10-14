@@ -14,14 +14,16 @@ require 'mention/application_helper_patch'
 module Mention
   TAG_SCAN_REGEX = /\[\~\w+\]/
 
-  def self.update_tag(content, watchable=nil)
+  def self.update_tag(content, watchable=nil, only_path=true)
     mentioned_users = content.scan(TAG_SCAN_REGEX)
     mentioned_users.each do |mentioned_user|
       if user = User.find_by_login(mentioned_user[2..-2])
         if watchable.is_a?(Issue) or watchable.is_a?(WikiPage)
           Watcher.create(:watchable => watchable, :user => user)
         else
-          content = content.gsub(mentioned_user, "<a class='user active' href='/users/#{user.id}'>#{user.name}</a>")
+          url_for_options = {:controller => 'users', :action => 'show', :id => user.id, :only_path => only_path}
+          url_for_options = url_for_options.merge(Mailer.default_url_options) unless only_path
+          content = content.gsub(mentioned_user, "<a class='user active' href='#{Rails.application.routes.url_helpers.url_for(url_for_options)}'>#{user.name}</a>")
         end
       end
     end
