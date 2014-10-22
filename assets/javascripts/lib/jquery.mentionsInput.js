@@ -205,7 +205,7 @@
       updateMentionsCollection();
 
       var triggerCharIndex = _.lastIndexOf(inputBuffer, settings.triggerChar);
-      if (triggerCharIndex > -1) {
+      if (triggerCharIndex > -1 && (triggerCharIndex === 0 || inputBuffer[triggerCharIndex-1]=== ' ')) {
         currentDataQuery = inputBuffer.slice(triggerCharIndex + 1).join('');
         currentDataQuery = utils.rtrim(currentDataQuery);
 
