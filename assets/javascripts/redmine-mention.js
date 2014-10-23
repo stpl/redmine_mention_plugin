@@ -1,10 +1,19 @@
 $(function () {
   $(document).on('click.addMentionInput', '.btn_comment', function(){
-    initMentionInput();
-    $(document).off('click.addMentionInput');
+    tryToInitMentionInput();
   });
   initMentionInput();
 });
+
+function tryToInitMentionInput() {
+  if ($('#lu_issue_notes')[0]){
+    initMentionInput();
+    $(document).off('.addMentionInput');
+  }
+  else {
+    setTimeout(tryToInitMentionInput,300);
+  }
+}
 
 function initMentionInput(){
   var inputs = $('.controller-issues textarea.wiki-edit, .controller-wiki textarea.wiki-edit');
