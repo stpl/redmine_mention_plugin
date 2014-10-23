@@ -1,5 +1,5 @@
 $(function () {
-  $(document).on('click.addMentionInput', '.btn_comment', function(){
+  $('div#content').on('click', '.btn_comment', function(){
     tryToInitMentionInput();
   });
   initMentionInput();
@@ -8,7 +8,6 @@ $(function () {
 function tryToInitMentionInput() {
   if ($('#lu_issue_notes')[0]){
     initMentionInput();
-    $(document).off('.addMentionInput');
   }
   else {
     setTimeout(tryToInitMentionInput,300);
