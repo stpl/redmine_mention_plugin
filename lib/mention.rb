@@ -40,6 +40,7 @@ module Mention
     Journal.send(:include, Mention::JournalPatch)
     User.send(:include, Mention::UserPatch)
     Issue.send(:include, Mention::IssuePatch)
+    IssuesHelper.send(:include, Mention::IssueHelperPatch)
     JournalsHelper.send(:include, Mention::JournalHelperPatch)
     WikiHelper.send(:include, Mention::WikiHelperPatch)
     ApplicationHelper.send(:include, Mention::ApplicationHelperPatch)

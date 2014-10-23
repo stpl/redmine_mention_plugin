@@ -1,10 +1,10 @@
 class MentionController < ApplicationController
   def search
     issue_id = params[:issue_id]
-    project_id = params[:project_id]
+    project_identifier = params[:project_identifier]
     users = []
-    if project_id
-      users = User.with_name(params[:search_tag]).includes(:members).where('members.project_id = ?', project_id)
+    if project_identifier
+      users = User.with_name(params[:search_tag]).includes(members: :project).where('projects.identifier = ?', project_identifier)
     elsif issue_id
       users = User.with_name(params[:search_tag]).includes(members: {project: :issues}).where('issues.id = ?', issue_id)
     end
