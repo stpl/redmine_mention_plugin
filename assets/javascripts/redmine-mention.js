@@ -1,6 +1,4 @@
 $(document).ready(function () {
-
-  /*$('.controller-issues textarea.wiki-edit, .controller-wiki textarea.wiki-edit')*/
   $(document).on( "focus", ".controller-issues textarea.wiki-edit, .controller-wiki textarea.wiki-edit", function() {
     initMentionInput($(this));
   });
