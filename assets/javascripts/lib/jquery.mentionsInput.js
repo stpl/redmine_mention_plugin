@@ -16,6 +16,7 @@
     triggerChar   : '@',
     onDataRequest : $.noop,
     minChars      : 2,
+    maxChars      : 15,
     showAvatars   : true,
     elastic       : true,
     classes       : {
@@ -205,7 +206,7 @@
       updateMentionsCollection();
 
       var triggerCharIndex = _.lastIndexOf(inputBuffer, settings.triggerChar);
-      if (triggerCharIndex > -1) {
+      if (triggerCharIndex > -1 && (triggerCharIndex === 0 || inputBuffer[triggerCharIndex-1]=== ' ' || inputBuffer[triggerCharIndex-1].charCodeAt() === 13)) {
         currentDataQuery = inputBuffer.slice(triggerCharIndex + 1).join('');
         currentDataQuery = utils.rtrim(currentDataQuery);
 
@@ -247,6 +248,10 @@
       }
 
       switch (e.keyCode) {
+        case KEY.ESC:
+          hideAutoComplete();
+          resetBuffer();
+          return false;
         case KEY.UP:
         case KEY.DOWN:
           var elmCurrentAutoCompleteItem = null;
@@ -343,7 +348,7 @@
     }
 
     function doSearch(query) {
-      if (query && query.length && query.length >= settings.minChars) {
+      if (query && query.length && query.length >= settings.minChars && query.length <= settings.maxChars && query.charCodeAt(0) != KEY.SPACE) {
         settings.onDataRequest.call(this, 'search', query, function (responseData) {
           populateDropdown(query, responseData);
         });

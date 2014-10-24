@@ -12,9 +12,9 @@ require 'mention/issue_patch'
 require 'mention/application_helper_patch'
 
 module Mention
-  TAG_SCAN_REGEX = /\[\~\w+\]/
+  TAG_SCAN_REGEX = /\[\~[a-z0-9_\-@\.]*\]/
 
-  def self.update_tag(content, watchable=nil, only_path=true)
+  def self.update_tag(content, watchable=nil, only_path=false)
     mentioned_users = content.scan(TAG_SCAN_REGEX)
     mentioned_users.each do |mentioned_user|
       if user = User.find_by_login(mentioned_user[2..-2])
@@ -40,6 +40,7 @@ module Mention
     Journal.send(:include, Mention::JournalPatch)
     User.send(:include, Mention::UserPatch)
     Issue.send(:include, Mention::IssuePatch)
+    IssuesHelper.send(:include, Mention::IssueHelperPatch)
     JournalsHelper.send(:include, Mention::JournalHelperPatch)
     WikiHelper.send(:include, Mention::WikiHelperPatch)
     ApplicationHelper.send(:include, Mention::ApplicationHelperPatch)
