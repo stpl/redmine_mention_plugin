@@ -1,10 +1,7 @@
 $(document).ready(function () {
   initMentionInput($('.controller-issues textarea.wiki-edit, .controller-wiki textarea.wiki-edit'));
-  $(document).on( "focus", ".controller-issues textarea.wiki-edit", function() {
-    var fields = $(this);
-    $.each(fields, function(index) {
-      if (fields[index].id == 'lu_issue_notes') initMentionInput($(fields[index]));
-    });
+  $(document).on( "focus", ".controller-issues #button_action_form textarea.wiki-edit", function() {
+    initMentionInput($(this));
   });
 });
 
