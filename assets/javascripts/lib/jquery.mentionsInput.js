@@ -16,6 +16,7 @@
     triggerChar   : '@',
     onDataRequest : $.noop,
     minChars      : 2,
+    maxChars      : 15,
     showAvatars   : true,
     elastic       : true,
     classes       : {
@@ -347,7 +348,7 @@
     }
 
     function doSearch(query) {
-      if (query && query.length && query.length >= settings.minChars) {
+      if (query && query.length && query.length >= settings.minChars && query.length <= settings.maxChars && query.charCodeAt(0) != KEY.SPACE) {
         settings.onDataRequest.call(this, 'search', query, function (responseData) {
           populateDropdown(query, responseData);
         });

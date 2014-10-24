@@ -30,6 +30,7 @@ function initMentionInput(inputs){
       });
     },
     minChars      : 1,
+    maxChars      : 15,
     templates     : {
       autocompleteList           : _.template('<div class="mentions-autocomplete-list"></div>'),
       autocompleteListItem       : _.template('<li data-ref-id="<%= id %>" data-display="<%= display %>"><%= name + " - " + email + " (" +content + ")"%></li>'),
