@@ -247,6 +247,10 @@
       }
 
       switch (e.keyCode) {
+        case KEY.ESC:
+          hideAutoComplete();
+          resetBuffer();
+          return false;
         case KEY.UP:
         case KEY.DOWN:
           var elmCurrentAutoCompleteItem = null;
