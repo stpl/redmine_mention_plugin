@@ -1,5 +1,5 @@
 $(document).ready(function () {
-  initMentionInput($('.controller-issues textarea.wiki-edit, .controller-wiki textarea.wiki-edit'));
+  initMentionInput($('.controller-issues textarea.wiki-edit, .controller-issues #issue_checklist_form input#add_checklist_item_input, .controller-wiki textarea.wiki-edit'));
   $(document).on( "focus", ".controller-issues #button_action_form textarea.wiki-edit", function() {
     initMentionInput($(this));
   });
