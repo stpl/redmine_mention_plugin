@@ -7,7 +7,7 @@ $(document).ready(function () {
 
 function initMentionInput(inputs){
   if (!inputs[0]) return;
-  var issue_regex_match = location.href.match(/\/issues\/(.*)\?/);
+  var issue_regex_match = location.href.match(/\/issues\/(\d*)/);
   var issue_id = issue_regex_match ? issue_regex_match[1] : false;
   var project_regex_match = location.href.match(/\/projects\/(.*)\/issues/) || location.href.match(/\/projects\/(.*)\/wiki/);
   var project_identifier = project_regex_match ? project_regex_match[1] : false;
