@@ -1,10 +1,15 @@
 $(document).ready(function () {
-  $(document).on( "focus", ".controller-issues textarea.wiki-edit, .controller-wiki textarea.wiki-edit", function() {
-    initMentionInput($(this));
+  initMentionInput($('.controller-issues textarea.wiki-edit, .controller-wiki textarea.wiki-edit'));
+  $(document).on( "focus", ".controller-issues textarea.wiki-edit", function() {
+    var fields = $(this);
+    $.each(fields, function(index) {
+      if (fields[index].id == 'lu_issue_notes') initMentionInput($(fields[index]));
+    });
   });
 });
 
 function initMentionInput(inputs){
+  if (!inputs[0]) return;
   var issue_regex_match = location.href.match(/\/issues\/(.*)\?/);
   var issue_id = issue_regex_match ? issue_regex_match[1] : false;
   var project_regex_match = location.href.match(/\/projects\/(.*)\/issues/) || location.href.match(/\/projects\/(.*)\/wiki/);
