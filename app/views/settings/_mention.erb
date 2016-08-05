@@ -1,0 +1,5 @@
+<p>
+  <label for="settings[mentions]">Mention syntax</label>
+  <%= select_tag('settings[mentions]',
+                 options_for_select(Mention.mention_settings_list(), settings['mentions'])) %>
+</p>

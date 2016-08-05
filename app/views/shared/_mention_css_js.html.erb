@@ -1,5 +1,11 @@
+<% mention_prefix, mention_suffix = Setting.plugin_redmine_mention_plugin['mentions'].split('username') %>
 <script type="text/javascript">
+$(document).ready(function(){
+	    window.mention_prefix = '<%=mention_prefix%>'
+        window.mention_suffix = '<%=mention_suffix%>'
+});
 	if(!window.jQuery) {
+        console.log("css")
 	    var script = document.createElement('script');
 	    script.src = '/plugin_assets/redmine_mention_plugin/javascripts/lib/jquery.min.js';
 	    script.type = 'text/javascript';
