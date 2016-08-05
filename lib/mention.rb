@@ -12,7 +12,7 @@ require 'mention/issue_patch'
 require 'mention/application_helper_patch'
 
 module Mention
-  TAG_SCAN_REGEX = /\@([\w+\.-]+\w)/
+  TAG_SCAN_REGEX = /@([\w.+-@]+\w)/
 
   def self.update_tag(content, watchable=nil, only_path=true)
     mentioned_users = scan_content(content)
@@ -35,7 +35,7 @@ module Mention
   end
   
   def self.update_content_for_username(content, username, replcaement)
-    content.gsub("@" + username, replcaement)
+    content.gsub(/@#{username}($|\W(\s|$)|[^\w.+-@])/, "#{replcaement}\\1")
   end
 
   def self.mentioned_users(content)
