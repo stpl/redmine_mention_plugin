@@ -1,4 +1,4 @@
-{<img src="https://travis-ci.org/hryamzik/redmine_mention_plugin.svg?branch=dev" alt="Build status for branch dev" />}[https://travis-ci.org/hryamzik/redmine_mention_plugin]
+{<img src="https://travis-ci.org/stpl/redmine_mention_plugin.svg?branch=master" alt="Build status for branch dev" />}[https://travis-ci.org/stpl/redmine_mention_plugin]
 = Redmine Mention Plugin
 
 Add user to the watchers list of an issue after mentioning him/her in the note. The syntax is "@username".
