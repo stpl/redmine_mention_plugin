@@ -39,7 +39,7 @@ class TestMention < Minitest::Unit::TestCase
       mentioned_users.each do |mentioned_user|
         test_case = Mention.update_content_for_username(test_case, mentioned_user[0], "'USER'")
       end
-      assert_equal(test_case, sample)
+      assert_equal(sample, test_case)
     end
   end
 end
