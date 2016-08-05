@@ -14,7 +14,7 @@ $(function () {
     minChars      : 1,
     templates     : {
       autocompleteList           : _.template('<div class="mentions-autocomplete-list"></div>'),
-      autocompleteListItem       : _.template('<li data-ref-id="<%= id %>" data-display="<%= display %>"><%= name + " - " + email + " (" +content + ")"%></li>'),
+      autocompleteListItem       : _.template('<li data-ref-id="<%= id %>" data-display="<%= display %>"><%= content + " (" +name + ")"%></li>'),
       mentionsOverlay            : _.template('<div class="mentions"><div></div></div>'),
       mentionItemSyntax          : _.template('@[<%= value %>](<%= id %>)'),
       mentionItemHighlight       : _.template('<strong><span><%= value %></span></strong>')
